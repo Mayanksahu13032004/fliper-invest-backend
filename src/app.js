@@ -13,9 +13,15 @@ app.use(express.urlencoded({extended:true,limit:"16kb"}))
 app.use(express.static("public"))
 app.use(cookieParser())
 
+app.get("/",(req,res)=>{
+    res.json({
+      message:    "server is running"
+    })
+})
 
 import cardinquery from './routes/card.routes.js'
 import subscribe from './routes/subscribe.routes.js'
+import { Aggregate } from "mongoose"
 
 app.use("/api/v1/project/card",cardinquery)
 app.use("/api/v1/project/subscribe",subscribe)
