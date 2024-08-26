@@ -21,7 +21,7 @@ app.get("/",(req,res)=>{
 
 import cardinquery from './routes/card.routes.js'
 import subscribe from './routes/subscribe.routes.js'
-import { Aggregate } from "mongoose"
+
 
 app.use("/api/v1/project/card",cardinquery)
 app.use("/api/v1/project/subscribe",subscribe)
