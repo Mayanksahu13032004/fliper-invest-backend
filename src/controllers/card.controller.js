@@ -5,30 +5,31 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 // Create a new card
 const createCard = asyncHandler(async (req, res) => {
-    const { tag, card_image, title, location, description, total_price, get_price, security_type, investment_multiple, maturity, min_investment } = req.body;
   
-    console.log("Tag name is:", tag);
-    console.log("The request body is", req.body);
+  
+    const {card_image, tag, title, location, description, total_price, get_price, security_type, investment_multiple, maturity, min_investment } = req.body;
+  
+    console.log("card_image name is:", card_image);
   
     // Validate required fields
     if ([tag, title].some(field => field?.trim() === "")) {
       throw new ApiError(400, "Tag and title fields are required");
     }
   
-    // Validate image file
-    const imageLocalPath = req.files?.card_image?.[0]?.path;
-    if (!imageLocalPath) {
-      throw new ApiError(400, 'Image file is required');
-    }
+    // // Validate image file
+    // const imageLocalPath = req.files?.card_image?.[0]?.path;
+    // if (!imageLocalPath) {
+    //   throw new ApiError(400, 'Image file is required');
+    // }
   
-    // Upload image to cloud storage
-    const image = await uploadOnCloudinary(imageLocalPath);
-    console.log('Image URL:', image.url);
+    // // // Upload image to cloud storage
+    // const image = await uploadOnCloudinary(imageLocalPath);
+    // console.log('Image URL:', image.url);
   
     // Create card data
     const newCardData = {
       tag,
-      card_image: image.url, // Assuming you want to store the image URL
+      card_image, // Assuming you want to store the image URL
       title,
       location,
       description,

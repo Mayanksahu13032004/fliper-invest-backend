@@ -3,7 +3,8 @@ import { createCard, getCards ,deleteCard} from "../controllers/card.controller.
 import {upload } from "../middlewares/multer.middlewares.js"
 const router=Router()
 
-router.route("/create-card").post(upload.fields([{name : "card_image",maxCount : 1}]),createCard) 
+// router.route("/create-card").post(createCard) 
+router.route("/create-card").post(createCard) 
 router.route("/get-card").get(getCards)
 router.route("/delete-cards").delete(deleteCard)
 
